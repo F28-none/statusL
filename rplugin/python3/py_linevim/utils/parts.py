@@ -7,4 +7,5 @@ class Parts:
         self.fg = '#ffffff'
         self.bg = '#000000'
         self.font_weight = 'NONE'
-        self.separator = '%='
+        self.make_coloum = '%='
+        self.shape = ''

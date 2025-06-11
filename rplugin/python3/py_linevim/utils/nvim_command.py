@@ -1,4 +1,5 @@
-def render(nvim,statusline,mode_color,file_color):
+def render(nvim,statusline,highlight):
     nvim.command(f'set statusline={statusline}')
-    nvim.command(f'highlight mode {mode_color}')
-    nvim.command(f'highlight file {file_color}')
+    for group,color in highlight.items():
+        nvim.command(f'highlight {group} {color}')
+
