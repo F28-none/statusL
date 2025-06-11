@@ -1,0 +1,10 @@
+class Parts:
+    def __init__(self) -> None:
+        self.icon_file = '󱔘'
+        self.icon_branch = ''
+        self.filename = '%t%m'
+        self.row_col= '%l:%c'
+        self.fg = '#ffffff'
+        self.bg = '#000000'
+        self.font_weight = 'NONE'
+        self.separator = '%='
