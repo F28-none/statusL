@@ -1,5 +1,9 @@
-def build(*parts):
-    status = ''.join(parts) #gabungkan semua parts
-    return status
+def build(parts):
+    status = []
+    for key,valtype in parts.items():
+        for part,value in valtype.items():
+            status.append(value)
+            
+    return ''.join(status)
 
 

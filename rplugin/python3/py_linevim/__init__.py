@@ -6,8 +6,6 @@ from py_linevim.utils.build_statusline import build
 from py_linevim.utils.colors import send_color,get_color_mode
 from py_linevim.utils.nvim_command import render 
 
-
-
 @plugin
 class PyLine:
     def __init__(self,nvim) -> None:
@@ -37,39 +35,39 @@ class PyLine:
         if not branch_name:
             icon_branch = ''
             branch_name = ''
-        #group color
-        group_color = {
-            'mode':'%#mode#',
-            'file':'%#file#',
-            'shape':'%#shape#',
-
-        }
-
         mode_color = send_color(get_color_mode(mode_core))
         file_color = send_color()
         shape_color = send_color('#000000',get_color_mode(mode_core))
 
-        higlight = {
-            'mode':mode_color,
-            'file':file_color,
-            'shape':shape_color,
+        style_status = {
+            'mode':{
+                'mode_group':'%#mode#',
+                'mode_part':mode,
+            },
+            'file':{
+                'file_group':'%#file#',
+                'file_part':file_name,
+                'file_icon':icon_file,
+            },
+            'colom':{
+                'colom_part':make_coloum,
+            },
+            'shape':{
+                'shape_icon':shape,
+            },
+            'branch':{
+                'branch_group':'%#branch#',
+                'branch_icon':icon_branch,
+                'branch_part':branch_name,
+                'branch_status':info_branch,
+            },
+            'row_col':{
+                'row_col_part':row_col,
+            },
+            'shape':{
+                'shape_icon':shape,
+            },
         }
 
-        statusline = build(
-            group_color['mode'],
-            mode,
-            group_color['shape'],
-            shape,
-            group_color['file'],
-            icon_file,
-            file_name,
-            make_coloum,
-            icon_branch,
-            branch_name,
-            info_branch,
-            group_color['mode'],
-            row_col,
-            group_color['shape'],
-            shape,
-        )
-        render(self.nvim,statusline,higlight)
+        statusline = build(style_status)
+        render(self.nvim,statusline)
