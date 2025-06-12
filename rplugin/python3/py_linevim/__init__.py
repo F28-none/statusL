@@ -38,11 +38,17 @@ class PyLine:
             icon_branch = ''
             branch_name = ''
         mode_color = send_color(get_color_mode(mode_core))
-        file_color = send_color()
-        shape_color = send_color('#000000',get_color_mode(mode_core))
+        file_color = send_color('#000000')
+        shape_color = send_color('#38423e','#000000')
 
+        highlight = {
+            'mode':mode_color,
+            'shape':shape_color,
+            'file':file_color,
+        }
         style_status = {
             'shape_left_mode':{
+#                'mode_group':'%#shape#',
                 'shape_icon':shape_left,
             },
             'mode':{
@@ -50,9 +56,11 @@ class PyLine:
                 'mode_part':mode,
             },
             'shape_right_mode':{
+#                'mode_group':'%#shape#',
                 'shape_icon':shape_right,
             },
             'shape_left_file':{
+                'mode_group':'%#shape#',
                 'shape_icon':shape_left,
             },
             'file':{
@@ -64,7 +72,7 @@ class PyLine:
                 'colom_part':make_coloum,
             },
             'branch':{
-                'branch_group':'%#branch#',
+#                'branch_group':'%#branch#',
                 'branch_icon':icon_branch,
                 'branch_part':branch_name,
                 'branch_status':info_branch,
@@ -73,9 +81,10 @@ class PyLine:
                 'row_col_part':row_col,
             },
             'shape_end_status':{
+                'mode_group':'%#shape#',
                 'shape_icon':shape_right,
             },
         }
 
         statusline = build(style_status)
-        render(self.nvim,statusline)
+        render(self.nvim,statusline,highlight)
