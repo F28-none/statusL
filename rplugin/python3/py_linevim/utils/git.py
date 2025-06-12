@@ -1,3 +1,4 @@
+#mengambil nama branch di direktori yg sedang di gunakan
 import subprocess
 def get_branch_name():
         branch_result = subprocess.run(['git', 'branch'], capture_output=True, text=True)
@@ -6,6 +7,7 @@ def get_branch_name():
             if line.startswith('*'):
                 return line.strip('* ').strip()
         return False
+#mengambil informasi branch yang sedanh di gunakan
 def get_branch_info():
         info = subprocess.run(['git', 'status'], capture_output=True, text=True)
         info_file=info.stdout.splitlines()

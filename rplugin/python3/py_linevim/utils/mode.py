@@ -1,3 +1,4 @@
+#membuat info menjadi kebih informatif
 def info_mode(mode):
     match mode:
         case 'n': return 'Normal'

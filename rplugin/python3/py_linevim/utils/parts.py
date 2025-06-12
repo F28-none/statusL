@@ -1,3 +1,4 @@
+#kelas ini menyimpan part dan icon yang di tampilkan
 class Parts:
     def __init__(self) -> None:
         self.icon_file = '󱔘'
@@ -10,4 +11,5 @@ class Parts:
         self.make_coloum = '%='
         self.shape_right = ''
         self.shape_left = ''
+        self.circle_dec = '='
 

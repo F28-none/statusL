@@ -1,3 +1,4 @@
+#membangun semua komponen dan part menjadi 1
 def build(parts):
     status = []
     for key,valtype in parts.items():
