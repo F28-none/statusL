@@ -30,7 +30,9 @@ class PyLine:
         branch_name = get_branch_name()
         info_branch = get_branch_info()
         row_col = self.parts.row_col
-        shape = self.parts.shape
+        shape_left = self.parts.shape_left
+        shape_right = self.parts.shape_right
+
 
         if not branch_name:
             icon_branch = ''
@@ -40,20 +42,26 @@ class PyLine:
         shape_color = send_color('#000000',get_color_mode(mode_core))
 
         style_status = {
+            'shape_left_mode':{
+                'shape_icon':shape_left,
+            },
             'mode':{
                 'mode_group':'%#mode#',
                 'mode_part':mode,
             },
+            'shape_right_mode':{
+                'shape_icon':shape_right,
+            },
+            'shape_left_file':{
+                'shape_icon':shape_left,
+            },
             'file':{
                 'file_group':'%#file#',
-                'file_part':file_name,
                 'file_icon':icon_file,
+                'file_part':file_name,
             },
             'colom':{
                 'colom_part':make_coloum,
-            },
-            'shape':{
-                'shape_icon':shape,
             },
             'branch':{
                 'branch_group':'%#branch#',
@@ -64,8 +72,8 @@ class PyLine:
             'row_col':{
                 'row_col_part':row_col,
             },
-            'shape':{
-                'shape_icon':shape,
+            'shape_end_status':{
+                'shape_icon':shape_right,
             },
         }
 

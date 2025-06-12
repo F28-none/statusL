@@ -8,4 +8,6 @@ class Parts:
         self.bg = '#000000'
         self.font_weight = 'NONE'
         self.make_coloum = '%='
-        self.shape = ''
+        self.shape_right = ''
+        self.shape_left = ''
+
