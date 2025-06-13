@@ -1,4 +1,4 @@
-from pynvim import plugin,autocmd
+from pynvim import plugin,autocmd,function
 from py_linevim.utils.mode import info_mode
 from py_linevim.utils.parts import Parts 
 from py_linevim.utils.git import get_branch_info,get_branch_name
@@ -11,6 +11,14 @@ class PyLine:
     def __init__(self,nvim) -> None:
         self.nvim = nvim
         self.parts = Parts()
+        self.bguser = '0'
+
+    @function('Py_line_config',sync=True)
+    def user_config(self,args):
+        data = args[0]
+        self.parts.bg_file = data.get('section_1')
+        
+
 
     #set pertama kali saat di membuka neovim
     @autocmd('VimEnter',sync=True)
@@ -42,15 +50,25 @@ class PyLine:
             icon_branch = ''
             branch_name = ''
 
-        mode_color = send_color(get_color_mode(mode_core))
-        file_color = send_color('#9c8f32')
-        shape_color = send_color('#FF000000','#9c8f32')
+        #separator color for integrated with mode
+        #section 1
         shape_color_mode = send_color('#FF000000',get_color_mode(mode_core))
+        mode_color = send_color(get_color_mode(mode_core))
+
+        #section 2 
+        shape_color_branch = send_color('#FF000000','#0317fc')
+        branch_color = send_color('#0317fc')
+
+        #section 3
+        file_color = send_color(self.parts.bg_file)
+        shape_color_file = send_color('#FF000000',self.parts.bg_file)
 
         highlight = {
+            'branch':branch_color,
             'mode':mode_color,
             'shapeMode':shape_color_mode,
-            'shape':shape_color,
+            'shapeBranch':shape_color_branch,
+            'shapeFile':shape_color_file,
             'file':file_color,
         }
 
@@ -58,46 +76,66 @@ class PyLine:
             'pipe2':{
                 'pipe2':circle_icon,
             },
-            'shape_left_mode':{
-                'mode_group':'%#shapeMode#',
-                'shape_icon':shape_left,
+            'shape_left1':{
+                'shape_group':'%#shapeMode#',
+                'shape':shape_left,
+            },
+            'nv_icon':{
+                'mode_group':'%#mode#',
+                'icon':'󰭕',
             },
             'mode':{
                 'mode_group':'%#mode#',
                 'mode_part':mode,
             },
-            'shape_right_mode':{
-                'mode_group':'%#shapeMode#',
-                'shape_icon':shape_right,
+            'shape_left2':{
+                'shape_group':'%#shapeMode#',
+                'shape':shape_right,
             },
             'pipe3':{
+                'pipe_group':'%#pipe#',
                 'pipe3':circle_icon,
             },
-            'shape_left_file':{
-                'mode_group':'%#shape#',
-                'shape_icon':shape_left,
+            'shape_left3':{
+                'shape_group':'%#shapeFile#',
+                'shape':shape_left,
             },
             'file':{
                 'file_group':'%#file#',
                 'file_icon':icon_file,
                 'file_part':file_name,
             },
-            'colom':{
-                'colom_part':make_coloum,
+            'shape_left4':{
+                'shape_group':'%#shapeFile#',
+                'shape':shape_right,
+            },
+            'pipe4':{
+                'pipe_group':'%#pipe#',
+                'pipe1':circle_icon,
+            },
+            'shape_left6':{
+                'shape_group':'%#shapeBranch#',
+                'shape':shape_left,
             },
             'branch':{
+                'branch_group':'%#branch#',
                 'branch_icon':icon_branch,
                 'branch_part':branch_name,
                 'branch_status':info_branch,
             },
+            'colom':{
+                'branch_group':'%#branch#',
+                'colom_part':make_coloum,
+            },
             'row_col':{
                 'row_col_part':row_col,
             },
-            'shape_end_status':{
-                'mode_group':'%#shape#',
-                'shape_icon':shape_right,
+            'shape_left5':{
+                'shape_group':'%#shapeBranch#',
+                'shape':shape_right,
             },
             'pipe1':{
+                'pipe_group':'%#pipe#',
                 'pipe1':circle_icon,
             },
         }

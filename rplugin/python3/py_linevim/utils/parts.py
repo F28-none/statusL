@@ -6,7 +6,7 @@ class Parts:
         self.filename = '%t%m'
         self.row_col= '%l:%c'
         self.fg = '#ffffff'
-        self.bg = '#000000'
+        self.bg_file = '#6f03fc'
         self.font_weight = 'NONE'
         self.make_coloum = '%='
         self.shape_right = ''

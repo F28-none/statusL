@@ -1,14 +1,14 @@
 #mendefiniikan dan membuat configurasi color
-def send_color(bg='#535e70',fg='#ffffff'):
-    return f'guibg={bg} guifg={fg}'
+def send_color(bg='#000000',fg='#ffffff',font='bold'):
+    return f'guibg={bg} guifg={fg} gui={font}'
 
 #mngubah warna di setiao masing masing mode
 def get_color_mode(mode):
-        bg_color = '#8c3eb3'  # default
+        bg_color = '#6f03fc'  # default
         match mode:
-            case 'i': return '#d496f2'
-            case 'v': return '#ed4c5f'
-            case 'n': return '#8c3eb3'
+            case 'i': return '#44bcd8'
+            case 'v': return '#1979a9'
+            case 'n': return '#69bdd2'
             case 'V': return '#b8182b'
             case "\\x16": return '#b9292o'
             case 'c': return '#99baa8'
