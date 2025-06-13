@@ -23,14 +23,17 @@ class PyLine:
             self.parts.section_2= data.get('file_bg','#000000')
             self.parts.section_3= data.get('branch_bg','#000000')
         except Exception as e:
-            self.nvim.err_write(f"[PyLine Error] Config gagal: {e}\n")
+            self.nvim.command(f'echo"[PyLine Error] Config gagal: {e}\n"')
         
 
 
     #set pertama kali saat di membuka neovim
     @autocmd('VimEnter',sync=True)
     def on_open(self):
-        self.set_status_line()
+        try:
+            self.set_status_line()
+        except Exception as e:
+            self.nvim.command(f'echo "Plugin eror{e}"')
 
     #mengambil info mode dari neovim
     def get_mode_nvim(self):
