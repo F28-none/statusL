@@ -4,4 +4,4 @@ def send_color(bg='#000000',fg='#ffffff',font='bold'):
 
 #mngubah warna di setiao masing masing mode
 def get_color_mode(mode,mode_theme):
-        return mode_theme.get(mode,'#6f03fc')
+        return mode_theme.get(mode,'#000000')

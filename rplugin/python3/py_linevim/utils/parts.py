@@ -4,6 +4,12 @@ class Parts:
         self.mode_bg = {
             'n':'#6f03fc',
             'i':'#000000',
+            'v':'#888888',
+            '\x16':'#888888',
+            'V':'#888888',
+            'R':'#000000',
+            't':'#888888',
+            'c':'#888888',
         }
         self.icon_file = '󱔘'
         self.icon_branch = ''
@@ -17,5 +23,5 @@ class Parts:
         self.make_coloum = '%='
         self.shape_right = ''
         self.shape_left = ''
-        self.circle_dec = '='
+        self.pipe= '='
 

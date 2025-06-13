@@ -16,12 +16,18 @@ class PyLine:
     def user_config(self,args):
         try:
             if not args or not isinstance(args[0], dict):
-                return
+                raise ValueError('Konfigurasi harus dictionary')
             data = args[0]
             mode_data = data.get('mode_bg',{})
+            key_user = mode_data.keys()
+            key_base = self.parts.mode_bg.keys()
+            for key in key_user:
+                if not key in key_base:
+                    raise Exception 
             self.parts.mode_bg = mode_data
             self.parts.section_2= data.get('file_bg','#000000')
             self.parts.section_3= data.get('branch_bg','#000000')
+            self.parts.pipe= data.get('pipe','=')
         except Exception as e:
             self.nvim.command(f'echo"[PyLine Error] Config gagal: {e}\n"')
         
@@ -53,7 +59,7 @@ class PyLine:
         row_col = self.parts.row_col
         shape_left = self.parts.shape_left
         shape_right = self.parts.shape_right
-        circle_icon = self.parts.circle_dec
+        circle_icon = f'\\{self.parts.pipe}'
 
 
         if not branch_name:
