@@ -11,12 +11,16 @@ class PyLine:
     def __init__(self,nvim) -> None:
         self.nvim = nvim
         self.parts = Parts()
-        self.bguser = '0'
 
     @function('Py_line_config',sync=True)
     def user_config(self,args):
+        if not args or not isinstance(args[0], dict):
+            return
         data = args[0]
-        self.parts.bg_file = data.get('section_1')
+        mode_data = data.get('mode_bg',{})
+        self.parts.mode_bg = mode_data
+        self.parts.section_2= data.get('file_bg','#000000')
+        self.parts.section_3= data.get('branch_bg','#000000')
         
 
 
@@ -52,16 +56,16 @@ class PyLine:
 
         #separator color for integrated with mode
         #section 1
-        shape_color_mode = send_color('#FF000000',get_color_mode(mode_core))
-        mode_color = send_color(get_color_mode(mode_core))
+        mode_color = send_color(get_color_mode(mode_core,self.parts.mode_bg))
+        shape_color_mode = send_color('#FF000000',get_color_mode(mode_core,self.parts.mode_bg))
 
         #section 2 
-        shape_color_branch = send_color('#FF000000','#0317fc')
-        branch_color = send_color('#0317fc')
+        file_color = send_color(self.parts.section_2)
+        shape_color_file = send_color('#FF000000',self.parts.section_2)
 
         #section 3
-        file_color = send_color(self.parts.bg_file)
-        shape_color_file = send_color('#FF000000',self.parts.bg_file)
+        shape_color_branch = send_color('#FF000000',self.parts.section_3)
+        branch_color = send_color(self.parts.section_3)
 
         highlight = {
             'branch':branch_color,
