@@ -14,13 +14,16 @@ class PyLine:
 
     @function('Py_line_config',sync=True)
     def user_config(self,args):
-        if not args or not isinstance(args[0], dict):
-            return
-        data = args[0]
-        mode_data = data.get('mode_bg',{})
-        self.parts.mode_bg = mode_data
-        self.parts.section_2= data.get('file_bg','#000000')
-        self.parts.section_3= data.get('branch_bg','#000000')
+        try:
+            if not args or not isinstance(args[0], dict):
+                return
+            data = args[0]
+            mode_data = data.get('mode_bg',{})
+            self.parts.mode_bg = mode_data
+            self.parts.section_2= data.get('file_bg','#000000')
+            self.parts.section_3= data.get('branch_bg','#000000')
+        except Exception as e:
+            self.nvim.err_write(f"[PyLine Error] Config gagal: {e}\n")
         
 
 
