@@ -27,6 +27,11 @@ Gunakan plugin manager **LAZY**
 this is an example configuration for py_linevim
 ```lua
 vim.fn.Py_line_config({
+--     icon_mode = '#', -- for icon for mode 
+--     separator_right = '#', -- for left border
+--     separator_left = '#', -- for right border
+--     icon_branch = '#', -- for icon branch
+--     icon_file = '#', -- for icon file
     file_bg = '#e0601b', -- baground color file
     pipe= '••', -- baground color file
     branch_bg = '#1b70e0',-- baground color file
