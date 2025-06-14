@@ -11,6 +11,7 @@ class PyLine:
         self.nvim = nvim
         self.parts = Parts()
 
+    #function for handel user configuration
     @function('Py_line_config',sync=True)
     def user_config(self,args):
         try:
@@ -32,6 +33,7 @@ class PyLine:
             self.parts.icon_branch= data.get('icon_branch',self.parts.icon_branch)
             self.parts.shape_left= data.get('separator_left',self.parts.shape_left)
             self.parts.shape_right= data.get('separator_right',self.parts.shape_right)
+            self.parts.icon_mode= data.get('icon_mode',self.parts.icon_mode)
         except Exception as e:
             self.nvim.command(f'echo"[PyLine Error] Config gagal: {e}\n"')
         
