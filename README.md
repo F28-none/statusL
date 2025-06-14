@@ -19,7 +19,9 @@
 
 Gunakan plugin manager **LAZY**
 ```lua
-{'F28-none/py_linevim'}
+{'F28-none/py_linevim',
+    build=UpdateRemotePlugins
+}
 ```
 ## Default Config
 this is an example configuration for py_linevim
