@@ -1,5 +1,5 @@
 # py_linevim
-![Screenshot Statusline](./Picsart_25-06-14_13-55-53-067.jpg)
+![Screenshot Statusline](./img/Picsart_25-06-14_13-55-53-067.jpg)
 **py_linevim** adalah plugin statusline Neovim berbasis Python yang menampilkan informasi seperti mode, nama file, posisi kursor, dan status Git branch dengan tampilan yang bisa dikustomisasi.
 
 ---
