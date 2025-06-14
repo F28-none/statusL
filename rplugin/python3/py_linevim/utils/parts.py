@@ -23,5 +23,6 @@ class Parts:
         self.make_coloum = '%='
         self.shape_right = ''
         self.shape_left = ''
-        self.pipe= '='
+        self.pipe= '•'
+        self.icon_mode ='󰭕'
 
