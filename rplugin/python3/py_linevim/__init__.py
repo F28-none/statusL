@@ -50,7 +50,7 @@ class PyLine:
         return self.nvim.funcs.mode()
 
     #CORE
-    @autocmd('ModeChanged',sync=True)
+    @autocmd('ModeChanged,BufWritePost',pattern='*',sync=True)
     def set_status_line(self):
         mode_core = self.get_mode_nvim()
         mode = info_mode(mode_core)
