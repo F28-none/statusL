@@ -22,6 +22,7 @@ Gunakan plugin manager **LAZY**
 {'F28-none/py_linevim'}
 ```
 ## Default Config
+this is an example configuration for py_linevim
 ```lua
 vim.fn.Py_line_config({
     file_bg = '#e0601b', -- baground color file
