@@ -2,7 +2,6 @@ from pynvim import plugin,autocmd,function
 from py_linevim.utils.mode import info_mode
 from py_linevim.utils.parts import Parts 
 from py_linevim.utils.git import get_branch_info,get_branch_name
-from py_linevim.utils.build_statusline import build
 from py_linevim.utils.colors import send_color,get_color_mode
 from py_linevim.utils.nvim_command import render 
 
@@ -24,7 +23,7 @@ class PyLine:
             key_base = self.parts.mode_bg.keys()
             for key in key_user:
                 if not key in key_base:
-                    raise Exception 
+                    raise ValueError(f'maaf mode {key} bukan mode nvim') 
             self.parts.mode_bg = mode_data
             self.parts.section_2= data.get('file_bg',self.parts.section_2)
             self.parts.section_3= data.get('branch_bg',self.parts.section_3)
@@ -36,8 +35,6 @@ class PyLine:
         except Exception as e:
             self.nvim.command(f'echo"[PyLine Error] Config gagal: {e}\n"')
         
-
-
     #set pertama kali saat di membuka neovim
     @autocmd('VimEnter',sync=True)
     def on_open(self):
@@ -57,7 +54,6 @@ class PyLine:
         mode = info_mode(mode_core)
         branch_name = get_branch_name()
         info_branch = get_branch_info()
-
 
         if not branch_name:
             branch_name = ''
@@ -84,6 +80,11 @@ class PyLine:
             'file':file_color,
         }
 
+        """
+        di sini saya memggunakan \\ untuk menghendel
+        agar memastikan penghubung tiap section adalah string
+        bukan caracter seperti |
+        """
         style_status = {
             'pipe2':{
                 'pipe2':f'\\{self.parts.pipe}',
@@ -151,7 +152,4 @@ class PyLine:
                 'pipe1':f'\\{self.parts.pipe}',
             },
         }
-
-        statusline = build(style_status)
-
-        render(self.nvim,statusline,highlight)
+        render(self.nvim,style_status,highlight)
