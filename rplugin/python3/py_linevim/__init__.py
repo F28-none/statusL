@@ -27,7 +27,9 @@ class PyLine:
             self.parts.mode_bg = mode_data
             self.parts.section_2= data.get('file_bg','#000000')
             self.parts.section_3= data.get('branch_bg','#000000')
-            self.parts.pipe= data.get('pipe','=')
+            self.parts.pipe= data.get('pipe','•')
+            self.parts.icon_file= data.get('icon_file','󱔘')
+            self.parts.icon_branch= data.get('icon_branch','')
         except Exception as e:
             self.nvim.command(f'echo"[PyLine Error] Config gagal: {e}\n"')
         

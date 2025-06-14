@@ -13,5 +13,5 @@ def get_branch_info():
         info_file=info.stdout.splitlines()
         for line in info_file:
                 if line.__contains__('modified') or 'Untracked'in line:
-                        return '⚡'
+                        return ''
         return ''
