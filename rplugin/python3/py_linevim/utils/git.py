@@ -6,7 +6,7 @@ def get_branch_name():
         for line in branches:
             if line.startswith('*'):
                 return line.strip('* ').strip()
-        return False
+        return '×'
 #mengambil informasi branch yang sedanh di gunakan
 def get_branch_info():
         info = subprocess.run(['git', 'status'], capture_output=True, text=True)
