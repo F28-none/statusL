@@ -13,7 +13,7 @@ class Parts:
                 'Select':'#888888',      
                 }
         self.icon_file = '󱔘'
-        self.icon_branch = ''
+        self.icon_branch = ''
         self.file_name = '%t%m'
         self.row_col= '%l:%c'
         self.section_1 = '#6f03fc'
