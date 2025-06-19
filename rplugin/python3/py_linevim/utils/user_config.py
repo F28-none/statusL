@@ -1,17 +1,11 @@
-def handle(self,args):
-   """
-   Pengecheckan untuk memvalidasi Konfigurasi Harus sebuah dict
-   """
+def edit_parts(self,args):
    try:
        if not args or not isinstance(args[0], dict):
            raise ValueError('Konfigurasi harus dictionary')
+
        config = args[0]
-       #only user can config
        config_mode = config.get('mode_bg',{})
        key_user = config_mode.keys()
-       """
-       Melakukan Pengecheckan ,key yang di kirim harus valid dengan key dari base
-       """
        key_base = self.parts.mode_bg.keys()
        for key in key_user:
            if not key in key_base:
