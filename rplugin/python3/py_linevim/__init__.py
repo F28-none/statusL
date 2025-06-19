@@ -33,21 +33,21 @@ class PyLine:
         branch_name = get_branch_name()
         info_branch = get_branch_info()
         group_highlight = self.create_group()
+        highlight = self.create_highlight(mode,self.parts,group_highlight)
         try:
             statusline = statusline_build(self.parts,mode,branch_name,info_branch,group_highlight)
-            highlight = self.create_highlight(mode,self.parts)
             apply_statusline(self.nvim,statusline,highlight)
         except Exception as e:
             self.nvim.command(f'build status failed {e}')
 
-    def create_highlight(self,mode,parts):
+    def create_highlight(self,mode,parts,group):
         highlight = {
-            'branch':apply_color(parts.section_3),
-            'mode':apply_color(get_color_mode(mode,parts.mode_bg)),
-            'borderMode':apply_color(parts.default_border_bg,get_color_mode(mode,parts.mode_bg)),
-            'borderBranch':apply_color(parts.default_border_bg,parts.section_3),
-            'borderFile':apply_color(parts.default_border_bg,parts.section_2),
-            'file':apply_color(parts.section_2),
+            group.get('branch_group').strip('#%'):apply_color(parts.section_3),
+            group.get('mode_group').strip('#%'):apply_color(get_color_mode(mode,parts.mode_bg)),
+            group.get('border_mode_group').strip('#%'):apply_color(parts.default_border_bg,get_color_mode(mode,parts.mode_bg)),
+            group.get('border_branch').strip('#%'):apply_color(parts.default_border_bg,parts.section_3),
+            group.get('border_file').strip('#%'):apply_color(parts.default_border_bg,parts.section_2),
+            group.get('file_group').strip('#%'):apply_color(parts.section_2),
         }
         return highlight
 
