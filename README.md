@@ -24,7 +24,7 @@ Gunakan plugin manager **LAZY**
 }
 ```
 ## Default Config
-this is an example configuration for py_linevim
+this is an example configuration
 ```lua
 vim.fn.Py_line_config({
 --     icon_mode = '#', -- icon for mode 
