@@ -27,23 +27,23 @@ Gunakan plugin manager **LAZY**
 this is an example configuration for py_linevim
 ```lua
 vim.fn.Py_line_config({
---     icon_mode = '#', -- for icon for mode 
---     separator_right = '#', -- for left border
---     separator_left = '#', -- for right border
---     icon_branch = '#', -- for icon branch
---     icon_file = '#', -- for icon file
-    file_bg = '#e0601b', -- baground color file
-    pipe= '••', -- baground color file
-    branch_bg = '#1b70e0',-- baground color file
-    --mode baground harus tabel lua
+--     icon_mode = '#', -- icon for mode 
+--     border_left = '∆', -- icon for border_left
+--     border_right = '§', -- icon for border_right
+--     icon_branch = '', -- icon for branch
+--     icon_file = '#', -- icon for file 
+--     file_bg = '#e0601b', -- baground for file section
+--     separator = '•', -- icon for separator
+--     branch_bg = '#1b70e0',-- baground for branch section
     mode_bg = {
-        ['\x16']= '#e01b3c', -- for visual block mode
-        n = '#09e644', -- for normal mode
-        i = '#82e609',-- for insert mode
-        v = '#09e6bd',-- for visual mode
-        V = '#e609cf',-- for visual line mode
-        c = '#e62709',-- for command mode
-        R = '#e62709',-- for replace mode
-        t = '#1b53e0',-- for terminal mode
+       Normal='#6f03fc',
+       Insert='#000000',
+       Visual='#888888',
+       VisualLine='#888888',
+       VisualBlock='#888888',
+       Command='#000000',
+       Replace='#888888',
+       Terminal='#888888',
+       Select='#888888',
     },
 })
