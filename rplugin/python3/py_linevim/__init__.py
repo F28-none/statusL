@@ -1,5 +1,5 @@
 from pynvim import plugin,autocmd,function
-from py_linevim.utils.parts import Parts 
+from py_linevim.utils.parts import Parts
 from py_linevim.utils.mode import info_mode
 from py_linevim.utils.git import get_branch_info,get_branch_name
 from py_linevim.utils.colors import apply_color,get_color_mode,add_group_color
@@ -13,6 +13,9 @@ class PyLine:
         self.nvim = nvim
         self.parts = Parts()
 
+    def get_mode_nvim(self):
+        return self.nvim.funcs.mode()
+
     @function('Py_line_config',sync=True)
     def user_config(self,args):
         edit_parts(self,args)
@@ -24,25 +27,38 @@ class PyLine:
         except Exception as e:
             self.nvim.command(f'echo "Plugin eror{e}"')
 
-    def get_mode_nvim(self):
-        return self.nvim.funcs.mode()
-
     @autocmd('ModeChanged,BufWritePost',pattern='*',sync=True)
     def set_status_line(self):
         mode = info_mode(self.get_mode_nvim())
         branch_name = get_branch_name()
         info_branch = get_branch_info()
-        highlight = self.highlight(mode,self.parts)
-        statusline = statusline_build(self.parts,mode,branch_name,info_branch)
-        apply_statusline(self.nvim,statusline,highlight)
+        group_highlight = self.create_group()
+        try:
+            statusline = statusline_build(self.parts,mode,branch_name,info_branch,group_highlight)
+            highlight = self.create_highlight(mode,self.parts)
+            apply_statusline(self.nvim,statusline,highlight)
+        except Exception as e:
+            self.nvim.command(f'build status failed {e}')
 
-    def highlight(self,mode,parts):
+    def create_highlight(self,mode,parts):
         highlight = {
             'branch':apply_color(parts.section_3),
             'mode':apply_color(get_color_mode(mode,parts.mode_bg)),
-            'borderMode':apply_color(parts.default_border_bg,get_color_mode(mode,parts.mode_bg)), #sepesial group untuk border mode
+            'borderMode':apply_color(parts.default_border_bg,get_color_mode(mode,parts.mode_bg)),
             'borderBranch':apply_color(parts.default_border_bg,parts.section_3),
             'borderFile':apply_color(parts.default_border_bg,parts.section_2),
             'file':apply_color(parts.section_2),
         }
         return highlight
+
+    def create_group(self):
+        group_highlight= {
+            'mode_group':add_group_color('mode'),
+            'branch_group':add_group_color('branch'),
+            'file_group':add_group_color('file'),
+            'border_mode_group':add_group_color('borderMode'),
+            'border_file':add_group_color('borderFile'),
+            'border_branch':add_group_color('borderBranch'),
+        }
+        return group_highlight
+
