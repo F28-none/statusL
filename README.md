@@ -17,6 +17,13 @@
 
 ## ⚙️ Instalasi
 
+**Dependencies**
+- python3
+- pynvim
+```
+pip install pynvim
+
+```
 Gunakan plugin manager **LAZY**
 ```lua
 {'F28-none/py_linevim',
