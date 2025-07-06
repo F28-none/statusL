@@ -31,7 +31,8 @@ Gunakan plugin manager **LAZY**
 }
 ```
 ## Default Config
-this is an example configuration
+Default konfigurasi, ubah lah sesuai keinginanmu,
+dengan pengaturan di bawah ini
 ```lua
 vim.fn.Py_line_config({
 --     icon_mode = '#', -- icon for mode 
